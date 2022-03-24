@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/FirstMVC/.vs/FirstMVC
+/FirstMVC/FirstMVC/bin/Debug/net6.0
+/FirstMVC/FirstMVC/obj
