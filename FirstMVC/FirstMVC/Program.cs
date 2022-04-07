@@ -1,5 +1,11 @@
+using FirstMVC.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddDbContext<MoviesDb>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MoviesDb")));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
