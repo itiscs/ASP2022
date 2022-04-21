@@ -23,6 +23,7 @@ namespace FirstMVC.Controllers
             return View();
         }
 
+        [Route("MyPage")]
         public IActionResult About(string id)
         {
             if(id != null)  
