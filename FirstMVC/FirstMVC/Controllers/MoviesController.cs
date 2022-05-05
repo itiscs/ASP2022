@@ -22,7 +22,7 @@ namespace FirstMVC.Controllers
         // GET: Movies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movies.ToListAsync());
+            return View(await _context.Movies.Include(m=>m.Genre).ToListAsync());
         }
 
         // GET: Movies/Details/5
@@ -33,7 +33,7 @@ namespace FirstMVC.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movies
+            var movie = await _context.Movies.Include(m=>m.Genre)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
             {
@@ -43,9 +43,16 @@ namespace FirstMVC.Controllers
             return View(movie);
         }
 
+        private void FillGenres(int genreId)
+        {
+            ViewBag.Genres = new SelectList(_context.Genres.ToList(), "Id", "Name", genreId);
+
+        }
+
         // GET: Movies/Create
         public IActionResult Create()
         {
+            FillGenres(0);
             return View();
         }
 
@@ -54,14 +61,16 @@ namespace FirstMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Title,ReleaseDate,GenreId,Price")] Movie movie)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            FillGenres(movie.GenreId);
             return View(movie);
         }
 
@@ -73,36 +82,40 @@ namespace FirstMVC.Controllers
                 return NotFound();
             }
 
+          
             var movie = await _context.Movies.FindAsync(id);
             if (movie == null)
             {
                 return NotFound();
             }
+            FillGenres(movie.GenreId);
+
             return View(movie);
         }
 
         // POST: Movies/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id != movie.Id)
+            var movieToUpdate = await _context.Movies.Include(m=>m.Genre).FirstOrDefaultAsync(c => c.Id == id);
+            if (movieToUpdate == null)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            
+            if (await TryUpdateModelAsync(movieToUpdate,
+                "", m => m.Title, m => m.ReleaseDate,  m=>m.GenreId, m=>m.Price))
             {
                 try
                 {
-                    _context.Update(movie);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieExists(movie.Id))
+                    if (!MovieExists(movieToUpdate.Id))
                     {
                         return NotFound();
                     }
@@ -113,7 +126,8 @@ namespace FirstMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            FillGenres(movieToUpdate.GenreId);
+            return View(movieToUpdate);
         }
 
         // GET: Movies/Delete/5

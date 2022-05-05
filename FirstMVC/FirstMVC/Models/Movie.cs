@@ -10,14 +10,15 @@ namespace FirstMVC.Models
         [Required]
         [Display(Name ="Название")]
         [StringLength(50)]
-        public string? Title { get; set; }
+        public string Title { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Дата релиза")]
         public DateTime ReleaseDate { get; set; }
+
+        public int GenreId { get; set; }
         [Display(Name = "Жанр")]
-        [MaxLength(30)]
-        public string? Genre { get; set; }
+        public Genre? Genre { get; set; }
         [Display(Name = "Цена")]
         [Column("MyPrice")]
         //[Range(0,100)]
@@ -26,15 +27,7 @@ namespace FirstMVC.Models
         public decimal Price { get; set; }
     }
 
-    public class MoviesDb : DbContext
-    {
-        public MoviesDb(DbContextOptions<MoviesDb> options)
-            : base(options)
-        {
-        }
-
-        public DbSet<Movie> Movies { get; set; }
-    }
+   
 
 
 
