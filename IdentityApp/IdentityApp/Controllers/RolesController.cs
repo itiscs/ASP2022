@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using IdentityApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IdentityApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;
@@ -59,14 +62,14 @@ namespace IdentityApp.Controllers
                 // получем список ролей пользователя
                 var userRoles = await _userManager.GetRolesAsync(user);
                 var allRoles = _roleManager.Roles.ToList();
-                //ChangeRoleViewModel model = new ChangeRoleViewModel
-                //{
-                //    UserId = user.Id,
-                //    UserEmail = user.Email,
-                //    UserRoles = userRoles,
-                //    AllRoles = allRoles
-                //};
-                //return View(model);
+                ChangeRoleViewModel model = new ChangeRoleViewModel
+                {
+                    UserId = user.Id,
+                    UserEmail = user.Email,
+                    UserRoles = userRoles,
+                    AllRoles = allRoles
+                };
+                return View(model);
             }
 
             return NotFound();
