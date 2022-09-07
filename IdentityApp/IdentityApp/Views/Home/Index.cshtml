@@ -3,6 +3,13 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Welcome  @ViewData["Name"] </h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+
+<form method="post" asp-action="SaveName">
+    <input type="text" name="txtName" placeholder="Введите имя" />
+    <input type="submit" value="Сохранить"/>
+
+</form> 

@@ -20,8 +20,17 @@ namespace IdentityApp.Controllers
 
         public IActionResult Index()
         {
+            if (HttpContext.Request.Cookies.ContainsKey("UserName"))
+                ViewData["Name"] = HttpContext.Request.Cookies["UserName"]?.ToString();
             return View();
         }
+
+        [HttpPost]
+        public IActionResult SaveName(string txtName)
+        {
+            HttpContext.Response.Cookies.Append("UserName", txtName);
+            return RedirectToAction("Index");
+        } 
 
         [Authorize]
         public IActionResult Privacy()
