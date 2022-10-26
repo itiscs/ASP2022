@@ -35,3 +35,6 @@
 /ConsoleApp2
 /WebApiSimple/TestProject1/bin/Debug/net6.0
 /WebApiSimple/TestProject1/obj
+/WebApiJWT/.vs
+/WebApiJWT/WebApiJWT/bin/Debug/net6.0
+/WebApiJWT/WebApiJWT/obj
