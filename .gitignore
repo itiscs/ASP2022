@@ -38,3 +38,6 @@
 /WebApiJWT/.vs
 /WebApiJWT/WebApiJWT/bin/Debug/net6.0
 /WebApiJWT/WebApiJWT/obj
+/WebApiClient/.vs/WebApiClient
+/WebApiClient/WebApiClient/bin/Debug/net6.0
+/WebApiClient/WebApiClient/obj
