@@ -41,3 +41,8 @@
 /WebApiClient/.vs/WebApiClient
 /WebApiClient/WebApiClient/bin/Debug/net6.0
 /WebApiClient/WebApiClient/obj
+/FetchApiClient/.vs/FetchApiClient
+/FetchApiClient/FetchApiClient/bin/Debug/net7.0
+/FetchApiClient/FetchApiClient/obj
+/WebApiJWT/WebApiJWT/bin/Release/net6.0
+/WebApiSimple/WebApiSimple/bin
