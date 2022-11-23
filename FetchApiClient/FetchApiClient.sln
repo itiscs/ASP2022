@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetchApiClient", "FetchApiClient\FetchApiClient.csproj", "{283185D4-7E3F-4EEA-BC9E-2F83B132427C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{283185D4-7E3F-4EEA-BC9E-2F83B132427C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{283185D4-7E3F-4EEA-BC9E-2F83B132427C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{283185D4-7E3F-4EEA-BC9E-2F83B132427C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{283185D4-7E3F-4EEA-BC9E-2F83B132427C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93BC820C-41E9-453B-8EAF-092FE1DE06B3}
+	EndGlobalSection
+EndGlobal
