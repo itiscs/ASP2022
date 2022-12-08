@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Windows Machine": {
+      "commandName": "MsixPackage",
+      "nativeDebugging": false
+    }
+  },
+  "mySettings": {
+    "apiUrl": "http://localhost:8081/"
+  }
+
+}
